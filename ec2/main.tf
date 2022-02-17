@@ -37,7 +37,7 @@ data "aws_ami" "amazon-linux-2" {
 }
 
 resource "aws_key_pair" "sshKey" {
-  key_name   = "tf_key"
+  key_name_prefix = "mykey-"
   public_key = file(var.public_key)
 }
 
@@ -55,7 +55,7 @@ output "Connexion" {
 output "SSH_Config" {
   value = <<SSHCONFIG
 
-  echo "Host ec2-${aws_instance.myInstance.instance_type}-${timestamp()}
+  echo "Host ec2-${aws_instance.myInstance.instance_type}
     User          ec2-user
     Hostname      ${aws_instance.myInstance.public_dns}
     StrictHostKeyChecking no" >> ~/.ssh/config

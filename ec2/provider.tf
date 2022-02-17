@@ -1,4 +1,7 @@
+data "aws_region" "current" {
+  provider = aws.region
+}
+
 provider "aws" {
-   profile    = "default"
-   region     = "eu-west-3"
- }
+  alias = "region"
+}
